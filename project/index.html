@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNIFACTS — Space Exploration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Starfield Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <!-- Audio Engine -->
+  <div id="audio-toggle" title="Toggle Space Ambience">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path id="audio-icon-path" d="M11 5L6 9H2v6h4l5 4V5z"/>
+      <path id="audio-wave1" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path id="audio-wave2" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo">
+      <span class="logo-icon">✦</span>
+      <span class="logo-text">UNIFACTS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link">Home</a></li>
+      <li><a href="#planets" class="nav-link">Planets</a></li>
+      <li><a href="#facts" class="nav-link">Facts</a></li>
+      <li><a href="#learning" class="nav-link">Learn</a></li>
+      <li><a href="#explorer" class="nav-link">Explorer</a></li>
+    </ul>
+    <button class="nav-cta clickable">Launch Mission</button>
+  </nav>
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section id="hero">
+    <!-- Profile Panel -->
+    <div id="profile-panel" class="glass-panel">
+      <div class="profile-avatar">
+        <div class="avatar-ring"></div>
+        <div class="avatar-img">👨‍🚀</div>
+      </div>
+      <div class="profile-info">
+        <span class="profile-label">Mission</span>
+        <span class="profile-name">Facts About Space</span>
+        <span class="profile-status"><span class="status-dot"></span>Active Mission</span>
+      </div>
+      <button id="profile-toggle" class="clickable">⟨</button>
+    </div>
+
+    <!-- Floating Astronauts -->
+    <div class="astronaut-field" id="astronaut-field">
+      <div class="astronaut" id="ast-chirag" data-id="chirag">
+        <div class="ast-suit">
+          <div class="ast-helmet">
+            <div class="ast-visor">
+              <span class="ast-emoji">👨‍🚀</span>
+            </div>
+            <div class="ast-visor-shine"></div>
+          </div>
+          <div class="ast-body">
+            <div class="ast-badge">CHIRAG</div>
+          </div>
+          <div class="ast-legs">
+            <div class="ast-leg"></div>
+            <div class="ast-leg"></div>
+          </div>
+          <div class="ast-arms">
+            <div class="ast-arm left"></div>
+            <div class="ast-arm right"></div>
+          </div>
+        </div>
+        <div class="ast-tether"></div>
+        <div class="ast-glow"></div>
+        <div class="ast-label">CHIRAG</div>
+        <div class="ast-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="astronaut" id="ast-suman" data-id="suman">
+        <div class="ast-suit">
+          <div class="ast-helmet">
+            <div class="ast-visor">
+              <span class="ast-emoji">👩‍🚀</span>
+            </div>
+            <div class="ast-visor-shine"></div>
+          </div>
+          <div class="ast-body">
+            <div class="ast-badge">SUMAN</div>
+          </div>
+          <div class="ast-legs">
+            <div class="ast-leg"></div>
+            <div class="ast-leg"></div>
+          </div>
+          <div class="ast-arms">
+            <div class="ast-arm left"></div>
+            <div class="ast-arm right"></div>
+          </div>
+        </div>
+        <div class="ast-tether"></div>
+        <div class="ast-glow"></div>
+        <div class="ast-label">SUMAN</div>
+        <div class="ast-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="astronaut" id="ast-aakarsh" data-id="aakarsh">
+        <div class="ast-suit">
+          <div class="ast-helmet">
+            <div class="ast-visor">
+              <span class="ast-emoji">🧑‍🚀</span>
+            </div>
+            <div class="ast-visor-shine"></div>
+          </div>
+          <div class="ast-body">
+            <div class="ast-badge">AAKARSH</div>
+          </div>
+          <div class="ast-legs">
+            <div class="ast-leg"></div>
+            <div class="ast-leg"></div>
+          </div>
+          <div class="ast-arms">
+            <div class="ast-arm left"></div>
+            <div class="ast-arm right"></div>
+          </div>
+        </div>
+        <div class="ast-tether"></div>
+        <div class="ast-glow"></div>
+        <div class="ast-label">AAKARSH</div>
+        <div class="ast-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="astronaut" id="ast-keshav" data-id="keshav">
+        <div class="ast-suit">
+          <div class="ast-helmet">
+            <div class="ast-visor">
+              <span class="ast-emoji">👨‍🚀</span>
+            </div>
+            <div class="ast-visor-shine"></div>
+          </div>
+          <div class="ast-body">
+            <div class="ast-badge">KESHAV</div>
+          </div>
+          <div class="ast-legs">
+            <div class="ast-leg"></div>
+            <div class="ast-leg"></div>
+          </div>
+          <div class="ast-arms">
+            <div class="ast-arm left"></div>
+            <div class="ast-arm right"></div>
+          </div>
+        </div>
+        <div class="ast-tether"></div>
+        <div class="ast-glow"></div>
+        <div class="ast-label">KESHAV</div>
+        <div class="ast-particles">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span>DEEP SPACE EXPLORATION PROGRAM</span>
+        <span class="eyebrow-dot"></span>
+      </div>
+
+      <div class="hero-title-block">
+        <h1 class="hero-title-top">EXPLORE THE</h1>
+        <h1 class="hero-title-cosmos">UNIVERSE</h1>
+      </div>
+
+      <p class="hero-subtitle">Embark on an extraordinary journey through space and time. Discover the wonders of the universe, explore distant worlds, and unlock the secrets of the cosmos.</p>
+
+      <div class="hero-cta-group">
+        <button class="btn-primary clickable" id="explore-btn">
+          <span class="btn-icon">⬡</span>
+          Explore
+        </button>
+        <button class="btn-secondary clickable" id="trailer-btn">
+          <span class="btn-play">▶</span>
+          Watch Trailer
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num">8</span><span class="hstat-label">Planets</span></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><span class="hstat-num">200B+</span><span class="hstat-label">Stars</span></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><span class="hstat-num">∞</span><span class="hstat-label">Mysteries</span></div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>SCROLL TO EXPLORE</span>
+    </div>
+  </section>
+
+  <!-- ======================== PLANETS SECTION ======================== -->
+  <section id="planets">
+    <div class="section-header">
+      <span class="section-tag">02 — PLANETARY PROFILES</span>
+      <h2 class="section-title">Meet The <span class="accent-cyan">Planets</span></h2>
+    </div>
+
+    <div class="planets-layout">
+      <!-- Left: 3D Planet Viewer -->
+      <div class="planet-viewer">
+        <div class="planet-viewer-frame">
+          <canvas id="planet-canvas"></canvas>
+          <div class="planet-viewer-overlay">
+            <div class="viewer-label">INTERACTIVE 3D MODEL</div>
+            <div class="viewer-drag-hint">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+              Drag to orbit
+            </div>
+          </div>
+          <div class="planet-light-source"></div>
+        </div>
+        <!-- Solar system timeline -->
+        <div class="solar-timeline">
+          <div class="timeline-label">SOLAR SYSTEM</div>
+          <div class="timeline-track">
+            <div class="timeline-line"></div>
+            <button class="tl-planet clickable active" data-planet="0" title="Mercury"><span class="tl-dot"></span><span class="tl-name">Mercury</span></button>
+            <button class="tl-planet clickable" data-planet="1" title="Venus"><span class="tl-dot"></span><span class="tl-name">Venus</span></button>
+            <button class="tl-planet clickable" data-planet="2" title="Earth"><span class="tl-dot"></span><span class="tl-name">Earth</span></button>
+            <button class="tl-planet clickable" data-planet="3" title="Mars"><span class="tl-dot"></span><span class="tl-name">Mars</span></button>
+            <button class="tl-planet clickable" data-planet="4" title="Jupiter"><span class="tl-dot"></span><span class="tl-name">Jupiter</span></button>
+            <button class="tl-planet clickable" data-planet="5" title="Saturn"><span class="tl-dot"></span><span class="tl-name">Saturn</span></button>
+            <button class="tl-planet clickable" data-planet="6" title="Uranus"><span class="tl-dot"></span><span class="tl-name">Uranus</span></button>
+            <button class="tl-planet clickable" data-planet="7" title="Neptune"><span class="tl-dot"></span><span class="tl-name">Neptune</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Planet Data -->
+      <div class="planet-data glass-panel">
+        <div class="planet-data-header">
+          <div class="planet-index-badge" id="planet-index">01</div>
+          <div>
+            <h3 class="planet-name" id="planet-name">Mercury</h3>
+            <div class="planet-type" id="planet-type">Terrestrial Planet</div>
+          </div>
+        </div>
+
+        <p class="planet-desc" id="planet-desc">The smallest planet in our solar system and nearest to the Sun, Mercury experiences extreme temperature swings, scorching days and frigid nights.</p>
+
+        <div class="planet-stats-grid">
+          <div class="pstat">
+            <span class="pstat-label">DIAMETER</span>
+            <span class="pstat-val mono" id="pstat-diameter">4,879 km</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-label">DIST. FROM SUN</span>
+            <span class="pstat-val mono" id="pstat-distance">57.9M km</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-label">MOONS</span>
+            <span class="pstat-val mono" id="pstat-moons">0</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-label">ORBITAL PERIOD</span>
+            <span class="pstat-val mono" id="pstat-orbital">88 days</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-label">SURFACE TEMP</span>
+            <span class="pstat-val mono" id="pstat-temp">430°C</span>
+          </div>
+          <div class="pstat">
+            <span class="pstat-label">GRAVITY</span>
+            <span class="pstat-val mono" id="pstat-gravity">3.7 m/s²</span>
+          </div>
+        </div>
+
+        <div class="planet-badges" id="planet-badges">
+          <span class="badge">Extreme temperatures</span>
+          <span class="badge">No atmosphere</span>
+          <span class="badge">Cratered surface</span>
+        </div>
+
+        <div class="planet-nav-buttons">
+          <button class="btn-next-planet clickable" id="prev-planet">← Prev</button>
+          <button class="btn-next-planet clickable accent" id="next-planet">Next Planet →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FACTS SECTION ======================== -->
+  <section id="facts">
+    <div class="facts-bg-accent"></div>
+    <div class="section-header">
+      <span class="section-tag">03 — COSMIC KNOWLEDGE</span>
+      <h2 class="section-title">Amazing <span class="accent-purple">Facts</span></h2>
+    </div>
+
+    <div class="facts-layout">
+      <div class="facts-grid">
+        <div class="fact-card glass-panel" data-target="99.86" data-suffix="%" data-label="Mass of the Solar System held by the Sun">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">%</span></div>
+          <div class="fact-label">Mass of the Solar System held by the Sun</div>
+          <div class="fact-icon">☀</div>
+        </div>
+        <div class="fact-card glass-panel" data-target="4.6" data-suffix="B" data-label="Years age of our Solar System">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">B yrs</span></div>
+          <div class="fact-label">Years old — Our Solar System</div>
+          <div class="fact-icon">🌌</div>
+        </div>
+        <div class="fact-card glass-panel" data-target="300000" data-suffix="" data-label="km/s — Speed of Light">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">km/s</span></div>
+          <div class="fact-label">Speed of Light</div>
+          <div class="fact-icon">⚡</div>
+        </div>
+        <div class="fact-card glass-panel" data-target="2" data-suffix="T+" data-label="Galaxies in the Observable Universe">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">T+</span></div>
+          <div class="fact-label">Galaxies in the Observable Universe</div>
+          <div class="fact-icon">🌠</div>
+        </div>
+        <div class="fact-card glass-panel" data-target="13.8" data-suffix="B" data-label="Years since the Big Bang">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">B yrs</span></div>
+          <div class="fact-label">Years since the Big Bang</div>
+          <div class="fact-icon">💥</div>
+        </div>
+        <div class="fact-card glass-panel" data-target="8.3" data-suffix="min" data-label="For sunlight to reach Earth">
+          <div class="fact-num"><span class="fact-counter">0</span><span class="fact-unit">min</span></div>
+          <div class="fact-label">For sunlight to reach Earth</div>
+          <div class="fact-icon">🔭</div>
+        </div>
+      </div>
+
+      <div class="did-you-know glass-panel">
+        <div class="dyk-header">
+          <span class="dyk-icon">💡</span>
+          <span class="dyk-title">DID YOU KNOW?</span>
+        </div>
+        <div class="dyk-content">
+          <p id="dyk-fact">A day on Venus is longer than a year on Venus. It takes 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.</p>
+        </div>
+        <div class="dyk-footer">
+          <div class="dyk-dots">
+            <span class="dyk-dot active"></span>
+            <span class="dyk-dot"></span>
+            <span class="dyk-dot"></span>
+            <span class="dyk-dot"></span>
+          </div>
+          <button class="dyk-next clickable">Next Fact →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== LEARNING SECTION ======================== -->
+  <section id="learning">
+    <div class="section-header">
+      <span class="section-tag">04 — EDUCATIONAL CONTENT</span>
+      <h2 class="section-title">Learning <span class="accent-orange">Paths</span></h2>
+      <p class="section-subtitle">Begin your cosmic education with our curated course catalog</p>
+    </div>
+
+    <div class="courses-grid">
+      <div class="course-card clickable glass-panel">
+        <div class="course-bg" style="background-image: url('https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=600&h=300&fit=crop&auto=format&q=80')"></div>
+        <div class="course-overlay"></div>
+        <div class="course-content">
+          <div class="course-badges">
+            <span class="cbadge beginner">Beginner</span>
+            <span class="cbadge duration">⏱ 4.5 hrs</span>
+          </div>
+          <div class="course-icon">☀️</div>
+          <h3 class="course-title">Solar Basics</h3>
+          <p class="course-desc">Understand the Sun, solar winds, heliosphere, and the fundamental forces driving our solar system.</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>12 Modules</span>
+              <span>·</span>
+              <span>2,400 enrolled</span>
+            </div>
+            <button class="btn-start-learning clickable">Start Learning ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card clickable glass-panel">
+        <div class="course-bg" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=600&h=300&fit=crop&auto=format&q=80')"></div>
+        <div class="course-overlay"></div>
+        <div class="course-content">
+          <div class="course-badges">
+            <span class="cbadge intermediate">Intermediate</span>
+            <span class="cbadge duration">⏱ 8 hrs</span>
+          </div>
+          <div class="course-icon">🪐</div>
+          <h3 class="course-title">Planetary Science</h3>
+          <p class="course-desc">Deep dive into planetary formation, geology, atmospheres, and the search for extraterrestrial environments.</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>20 Modules</span>
+              <span>·</span>
+              <span>1,800 enrolled</span>
+            </div>
+            <button class="btn-start-learning clickable">Start Learning ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card clickable glass-panel">
+        <div class="course-bg" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&h=300&fit=crop&auto=format&q=80')"></div>
+        <div class="course-overlay"></div>
+        <div class="course-content">
+          <div class="course-badges">
+            <span class="cbadge advanced">Advanced</span>
+            <span class="cbadge duration">⏱ 12 hrs</span>
+          </div>
+          <div class="course-icon">🌌</div>
+          <h3 class="course-title">Deep Space & Cosmology</h3>
+          <p class="course-desc">Explore black holes, dark matter, gravitational waves, and the ultimate fate of the universe.</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>28 Modules</span>
+              <span>·</span>
+              <span>950 enrolled</span>
+            </div>
+            <button class="btn-start-learning clickable">Start Learning ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== EXPLORER SECTION ======================== -->
+  <section id="explorer">
+    <div class="explorer-header">
+      <span class="section-tag">05 — INTERACTIVE JOURNEY MAP</span>
+      <h2 class="section-title">The Full-Screen <span class="accent-cyan">Explorer</span></h2>
+    </div>
+
+    <div class="explorer-container">
+      <canvas id="explorer-canvas"></canvas>
+
+      <!-- Sidebar -->
+      <div class="explorer-sidebar glass-panel">
+        <div class="sidebar-title">
+          <span class="sidebar-icon">⬡</span>
+          NAVIGATION
+        </div>
+        <ul class="planet-nav-list">
+          <li><button class="planet-nav-btn clickable active" data-exp-planet="sun">☀ Sun</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="mercury">◦ Mercury</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="venus">◦ Venus</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="earth">◦ Earth</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="mars">◦ Mars</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="jupiter">◦ Jupiter</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="saturn">◦ Saturn</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="uranus">◦ Uranus</button></li>
+          <li><button class="planet-nav-btn clickable" data-exp-planet="neptune">◦ Neptune</button></li>
+        </ul>
+        <button class="btn-return clickable" id="return-base">
+          ⌂ Return to Base
+        </button>
+        <div class="sidebar-coords">
+          <div class="coord-label">CAM POSITION</div>
+          <div class="coord-val mono" id="cam-coords">X: 0 | Y: 0 | Z: 100</div>
+        </div>
+      </div>
+
+      <!-- Info overlay -->
+      <div class="explorer-info-overlay" id="explorer-info">
+        <div class="exp-planet-name" id="exp-planet-name">SOLAR SYSTEM</div>
+        <div class="exp-planet-detail" id="exp-planet-detail">Overview — 8 Planets, 1 Star</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer id="footer">
+    <div class="footer-glow-top"></div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-icon">✦</span>
+          <span class="logo-text">COSMOS</span>
+        </div>
+        <p class="footer-tagline">Humanity's guide to the infinite universe. Explore, learn, and connect with the cosmos.</p>
+        <div class="community-stats">
+          <div class="cstat">
+            <span class="cstat-num">50K+</span>
+            <span class="cstat-label">Explorers</span>
+          </div>
+          <div class="cstat">
+            <span class="cstat-num">200+</span>
+            <span class="cstat-label">Missions</span>
+          </div>
+          <div class="cstat">
+            <span class="cstat-num">8</span>
+            <span class="cstat-label">Planets</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4 class="footer-col-title">Explore</h4>
+          <ul>
+            <li><a href="#" class="footer-link clickable">Solar System</a></li>
+            <li><a href="#" class="footer-link clickable">Deep Space</a></li>
+            <li><a href="#" class="footer-link clickable">Exoplanets</a></li>
+            <li><a href="#" class="footer-link clickable">Black Holes</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Learn</h4>
+          <ul>
+            <li><a href="#" class="footer-link clickable">Courses</a></li>
+            <li><a href="#" class="footer-link clickable">Articles</a></li>
+            <li><a href="#" class="footer-link clickable">Missions</a></li>
+            <li><a href="#" class="footer-link clickable">Research</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Connect</h4>
+          <ul>
+            <li><a href="#" class="footer-link clickable">Community</a></li>
+            <li><a href="#" class="footer-link clickable">Events</a></li>
+            <li><a href="#" class="footer-link clickable">Newsletter</a></li>
+            <li><a href="#" class="footer-link clickable">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-subscribe">
+        <h4 class="subscribe-title">Join The Cosmic Community</h4>
+        <p class="subscribe-desc">Get weekly space discoveries delivered to your inbox.</p>
+        <div class="subscribe-form">
+          <input type="email" placeholder="your@email.com" class="subscribe-input clickable" />
+          <button class="subscribe-btn clickable">Launch ↗</button>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link clickable">𝕏</a>
+          <a href="#" class="social-link clickable">in</a>
+          <a href="#" class="social-link clickable">yt</a>
+          <a href="#" class="social-link clickable">ig</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 COSMOS — Space Exploration Platform. All rights reserved.</span>
+      <span>Built with ✦ for the universe</span>
+    </div>
+  </footer>
+
+  <!-- ======================== ASTRONAUT PORTFOLIO MODALS ======================== -->
+  <div class="portfolio-backdrop" id="portfolio-backdrop"></div>
+
+  <!-- Chirag Portfolio -->
+  <div class="portfolio-modal glass-panel" id="portfolio-chirag">
+    <button class="portfolio-close clickable" data-close="chirag">✕</button>
+    <div class="portfolio-header">
+      <div class="portfolio-avatar">
+        <div class="portfolio-avatar-ring"></div>
+        <span class="portfolio-avatar-emoji">👨‍🚀</span>
+        <div class="portfolio-orbit-dot"></div>
+      </div>
+      <div class="portfolio-identity">
+        <div class="portfolio-rank">MISSION COMMANDER</div>
+        <h2 class="portfolio-name">CHIRAG</h2>
+        <div class="portfolio-codename">Callsign: <span>NOVA-1</span></div>
+      </div>
+    </div>
+    <div class="portfolio-divider"></div>
+    <div class="portfolio-bio">
+      <p>Chirag is a pioneering aerospace engineer and mission specialist with expertise in deep-space navigation systems. His visionary thinking has guided multiple orbital missions beyond the asteroid belt.</p>
+    </div>
+    <div class="portfolio-stats-row">
+      <div class="portfolio-stat"><span class="ps-num">33</span><span class="ps-label">Missions</span></div>
+      <div class="portfolio-stat"><span class="ps-num">2345</span><span class="ps-label">Space Days</span></div>
+      <div class="portfolio-stat"><span class="ps-num">7</span><span class="ps-label">EVAs</span></div>
+    </div>
+    <div class="portfolio-skills">
+      <span class="skill-badge">Navigation</span>
+      <span class="skill-badge">AI Systems</span>
+      <span class="skill-badge">Orbital Mechanics</span>
+      <span class="skill-badge">Leadership</span>
+    </div>
+    <div class="portfolio-missions">
+      <div class="pm-label">NOTABLE MISSIONS</div>
+      <div class="pm-item"><span class="pm-dot"></span>Operation Helios — Solar Probe</div>
+      <div class="pm-item"><span class="pm-dot"></span>Project Andromeda — Deep Space</div>
+      <div class="pm-item"><span class="pm-dot"></span>Mars Gateway — Phase II</div>
+    </div>
+    <div class="portfolio-status"><span class="ps-dot-live"></span>CURRENTLY ACTIVE IN ORBIT</div>
+  </div>
+
+  <!-- Suman Portfolio -->
+  <div class="portfolio-modal glass-panel" id="portfolio-suman">
+    <button class="portfolio-close clickable" data-close="suman">✕</button>
+    <div class="portfolio-header">
+      <div class="portfolio-avatar">
+        <div class="portfolio-avatar-ring" style="--ring-color: #b026ff"></div>
+        <span class="portfolio-avatar-emoji">👩‍🚀</span>
+        <div class="portfolio-orbit-dot" style="--dot-color: #b026ff"></div>
+      </div>
+      <div class="portfolio-identity">
+        <div class="portfolio-rank" style="color: var(--purple)">SCIENCE OFFICER</div>
+        <h2 class="portfolio-name" style="background: linear-gradient(135deg, #b026ff, #e080ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SUMAN</h2>
+        <div class="portfolio-codename">Callsign: <span style="color:#b026ff">PULSAR-7</span></div>
+      </div>
+    </div>
+    <div class="portfolio-divider" style="background: linear-gradient(to right, transparent, var(--purple), transparent)"></div>
+    <div class="portfolio-bio">
+      <p>Suman is a brilliant astrophysicist and science officer whose groundbreaking research on exoplanet atmospheres has revolutionized our understanding of potential life-bearing worlds.</p>
+    </div>
+    <div class="portfolio-stats-row">
+      <div class="portfolio-stat"><span class="ps-num" style="color:#b026ff">8</span><span class="ps-label">Missions</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#b026ff">612</span><span class="ps-label">Space Days</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#b026ff">5</span><span class="ps-label">Discoveries</span></div>
+    </div>
+    <div class="portfolio-skills">
+      <span class="skill-badge" style="background:rgba(176,38,255,0.15);border-color:rgba(176,38,255,0.4);color:#d080ff">Astrophysics</span>
+      <span class="skill-badge" style="background:rgba(176,38,255,0.15);border-color:rgba(176,38,255,0.4);color:#d080ff">Exobiology</span>
+      <span class="skill-badge" style="background:rgba(176,38,255,0.15);border-color:rgba(176,38,255,0.4);color:#d080ff">Spectroscopy</span>
+      <span class="skill-badge" style="background:rgba(176,38,255,0.15);border-color:rgba(176,38,255,0.4);color:#d080ff">Research</span>
+    </div>
+    <div class="portfolio-missions">
+      <div class="pm-label" style="color:#b026ff">NOTABLE MISSIONS</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#b026ff"></span>Kepler Survey — Exoplanet Atlas</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#b026ff"></span>Titan Dive — Atmosphere Study</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#b026ff"></span>Europa Watch — Ice Analysis</div>
+    </div>
+    <div class="portfolio-status" style="border-color:rgba(176,38,255,0.3);background:rgba(176,38,255,0.08)"><span class="ps-dot-live" style="background:#b026ff;box-shadow:0 0 8px #b026ff"></span>SCIENCE LAB — STATION ALPHA</div>
+  </div>
+
+  <!-- Aakarsh Portfolio -->
+  <div class="portfolio-modal glass-panel" id="portfolio-aakarsh">
+    <button class="portfolio-close clickable" data-close="aakarsh">✕</button>
+    <div class="portfolio-header">
+      <div class="portfolio-avatar">
+        <div class="portfolio-avatar-ring" style="--ring-color: #ff5100"></div>
+        <span class="portfolio-avatar-emoji">🧑‍🚀</span>
+        <div class="portfolio-orbit-dot" style="--dot-color: #ff5100"></div>
+      </div>
+      <div class="portfolio-identity">
+        <div class="portfolio-rank" style="color: var(--orange)">CHIEF ENGINEER</div>
+        <h2 class="portfolio-name" style="background: linear-gradient(135deg, #ff5100, #ff9060); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AAKARSH</h2>
+        <div class="portfolio-codename">Callsign: <span style="color:#ff5100">FORGE-3</span></div>
+      </div>
+    </div>
+    <div class="portfolio-divider" style="background: linear-gradient(to right, transparent, var(--orange), transparent)"></div>
+    <div class="portfolio-bio">
+      <p>Aakarsh is a masterful systems engineer who designed the next-generation ion propulsion drives. His engineering genius has pushed the boundaries of what humanity can achieve in deep space exploration.</p>
+    </div>
+    <div class="portfolio-stats-row">
+      <div class="portfolio-stat"><span class="ps-num" style="color:#ff5100">15</span><span class="ps-label">Missions</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#ff5100">1,024</span><span class="ps-label">Space Days</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#ff5100">9</span><span class="ps-label">Patents</span></div>
+    </div>
+    <div class="portfolio-skills">
+      <span class="skill-badge" style="background:rgba(255,81,0,0.15);border-color:rgba(255,81,0,0.4);color:#ff8040">Propulsion</span>
+      <span class="skill-badge" style="background:rgba(255,81,0,0.15);border-color:rgba(255,81,0,0.4);color:#ff8040">Robotics</span>
+      <span class="skill-badge" style="background:rgba(255,81,0,0.15);border-color:rgba(255,81,0,0.4);color:#ff8040">Systems Eng.</span>
+      <span class="skill-badge" style="background:rgba(255,81,0,0.15);border-color:rgba(255,81,0,0.4);color:#ff8040">Thermal Ctrl</span>
+    </div>
+    <div class="portfolio-missions">
+      <div class="pm-label" style="color:#ff5100">NOTABLE MISSIONS</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#ff5100"></span>Ion Drive Alpha — Test Flight</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#ff5100"></span>Rover Deploy — Mars Surface</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#ff5100"></span>Deep Space 9 — Engine Refit</div>
+    </div>
+    <div class="portfolio-status" style="border-color:rgba(255,81,0,0.3);background:rgba(255,81,0,0.08)"><span class="ps-dot-live" style="background:#ff5100;box-shadow:0 0 8px #ff5100"></span>ENGINE BAY — DEEP SPACE VESSEL</div>
+  </div>
+
+  <!-- Keshav Portfolio -->
+  <div class="portfolio-modal glass-panel" id="portfolio-keshav">
+    <button class="portfolio-close clickable" data-close="keshav">✕</button>
+    <div class="portfolio-header">
+      <div class="portfolio-avatar">
+        <div class="portfolio-avatar-ring" style="--ring-color: #00ff88"></div>
+        <span class="portfolio-avatar-emoji">👨‍🚀</span>
+        <div class="portfolio-orbit-dot" style="--dot-color: #00ff88"></div>
+      </div>
+      <div class="portfolio-identity">
+        <div class="portfolio-rank" style="color: #00ff88">PILOT &amp; NAVIGATOR</div>
+        <h2 class="portfolio-name" style="background: linear-gradient(135deg, #00ff88, #00ddaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">KESHAV</h2>
+        <div class="portfolio-codename">Callsign: <span style="color:#00ff88">VECTOR-X</span></div>
+      </div>
+    </div>
+    <div class="portfolio-divider" style="background: linear-gradient(to right, transparent, #00ff88, transparent)"></div>
+    <div class="portfolio-bio">
+      <p>Keshav is an elite cosmic pilot with unmatched reflexes and spatial awareness. He has navigated through asteroid fields, docked with rotating space stations, and executed gravity-assist slingshots around gas giants.</p>
+    </div>
+    <div class="portfolio-stats-row">
+      <div class="portfolio-stat"><span class="ps-num" style="color:#00ff88">20</span><span class="ps-label">Missions</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#00ff88">2,100</span><span class="ps-label">Space Days</span></div>
+      <div class="portfolio-stat"><span class="ps-num" style="color:#00ff88">47</span><span class="ps-label">Dockings</span></div>
+    </div>
+    <div class="portfolio-skills">
+      <span class="skill-badge" style="background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:#00ff88">Piloting</span>
+      <span class="skill-badge" style="background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:#00ff88">Navigation</span>
+      <span class="skill-badge" style="background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:#00ff88">Emergency EVA</span>
+      <span class="skill-badge" style="background:rgba(0,255,136,0.12);border-color:rgba(0,255,136,0.4);color:#00ff88">G-Force Endurance</span>
+    </div>
+    <div class="portfolio-missions">
+      <div class="pm-label" style="color:#00ff88">NOTABLE MISSIONS</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#00ff88"></span>Asteroid Belt Run — Supply Drop</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#00ff88"></span>Jupiter Slingshot — Probe Launch</div>
+      <div class="pm-item"><span class="pm-dot" style="background:#00ff88"></span>Emergency Rescue — ISS-7</div>
+    </div>
+    <div class="portfolio-status" style="border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.08)"><span class="ps-dot-live" style="background:#00ff88;box-shadow:0 0 8px #00ff88"></span>COCKPIT — APPROACHING SATURN</div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-star">✦</span>
+        <span class="loader-brand">COSMOS</span>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-status" id="loader-status">Initializing Deep Space Engines...</div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
